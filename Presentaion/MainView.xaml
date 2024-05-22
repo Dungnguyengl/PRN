@@ -1,0 +1,43 @@
+﻿<Window x:Class="Presentaion.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesWPFApp"
+        mc:Ignorable="d"
+        Title="Sales App"
+        Width="850"
+        Height="600">
+    <StackPanel Margin="10">
+        <StackPanel Orientation="Horizontal"
+                    Margin="10 5">
+            <TextBlock Padding="4 10"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Text="Hello, {User}"/>
+            <Button Content="Login/Logout"
+                    Margin="10 10"
+                    Click="LoginClick"/>
+        </StackPanel>
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Members"/>
+                </TabItem.Header>
+                <Frame Source="MembersView.xaml"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Orders"/>
+                </TabItem.Header>
+                <Frame Source="OrdersView.xaml"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Products"/>
+                </TabItem.Header>
+                <Frame Source="ProductsView.xaml"/>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+</Window>
