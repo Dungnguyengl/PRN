@@ -12,7 +12,7 @@
         <TextBlock Padding="4 10"
            FontSize="24"
            FontWeight="Bold">Production Detail</TextBlock>
-        <Grid>
+        <Grid DataContext="{Binding SelectedProduct}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -26,7 +26,7 @@
                     <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0">Category:</Label>
-                <TextBox Grid.Column="1"/>
+                <TextBox Grid.Column="1" IsEnabled="False" Text="1"/>
             </Grid>
             <Grid Grid.Row="1" Margin="0 5">
                 <Grid.ColumnDefinitions>
@@ -64,8 +64,8 @@
         <StackPanel Orientation="Horizontal"
             HorizontalAlignment="Right"
             Margin="-2 1">
-            <Button Margin="2 0" Padding="6 2">Cancel</Button>
-            <Button Margin="2 0" Padding="6 2">Confirm</Button>
+            <Button Click="Button_Click">Cancel</Button>
+            <Button Click="Button_Click">Confirm</Button>
         </StackPanel>
     </StackPanel>
 </Window>

@@ -49,23 +49,23 @@
                 <TextBox IsEnabled="False" Grid.Column="1"/>
             </Grid>
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding Items}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
-                    <GridViewColumn Header="Category" Width="200" DisplayMemberBinding="{Binding Cartegory}" />
-                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding ProductionName}" />
-                    <GridViewColumn Header="Weight" Width="200" DisplayMemberBinding="{Binding City}" />
-                    <GridViewColumn Header="Unit Price" Width="100" DisplayMemberBinding="{Binding Country}" />
-                    <GridViewColumn Header="Unit In Stock" Width="100" DisplayMemberBinding="{Binding Country}" />
+                    <GridViewColumn Header="Category" Width="200" DisplayMemberBinding="{Binding CategoryId}" />
+                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding ProductName}" />
+                    <GridViewColumn Header="Weight" Width="200" DisplayMemberBinding="{Binding Weight}" />
+                    <GridViewColumn Header="Unit Price" Width="100" DisplayMemberBinding="{Binding UnitPrice}" />
+                    <GridViewColumn Header="Unit In Stock" Width="100" DisplayMemberBinding="{Binding UnitInStock}" />
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="2" 
                 Orientation="Horizontal"
                 FlowDirection="RightToLeft" Margin="0,0,5,0">
-            <Button Margin="2 0" Padding="6 2" VerticalAlignment="Center" HorizontalAlignment="Center">Add</Button>
-            <Button Margin="2 0" Padding="6 2" VerticalAlignment="Center" HorizontalAlignment="Center">Modify</Button>
-            <Button Margin="2 0" Padding="6 2" VerticalAlignment="Center" HorizontalAlignment="Center">Delete</Button>
+            <Button Click="Button_Click">Add</Button>
+            <Button IsEnabled="{Binding IsProductSelected}" Click="Button_Click">Modify</Button>
+            <Button IsEnabled="{Binding IsProductSelected}" Click="Button_Click">Delete</Button>
         </StackPanel>
     </Grid>
 </Page>

@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using ViewModel.ViewModels;
 
 namespace SalesWPFApp
 {
@@ -22,6 +12,47 @@ namespace SalesWPFApp
         public ProductionDetailView()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && DataContext is ProductViewModel context)
+            {
+                var confirm = new Popup
+                {
+                    Button1Title = "Cancel",
+                    Button2Title = "OK",
+                };
+                switch (button.Content)
+                {
+                    case "Confirm":
+                        confirm.Title = context.IsCreating ? "Create" : "Update";
+                        confirm.Message = $"Do you want {(context.IsCreating ? "create" : "update")} product?";
+                        confirm.Button2Action = () =>
+                        {
+                            if (context.IsCreating)
+                            {
+                                if (context.AddCommand.CanExecute(null))
+                                    context.AddCommand.Execute(null);
+                            }
+                            else
+                            {
+                                if (context.UpdateCommand.CanExecute(null))
+                                    context.UpdateCommand.Execute(null);
+                            }
+                            context.PropertyChanged += (object? sender, System.ComponentModel.PropertyChangedEventArgs e) =>
+                            {
+                                if (e.PropertyName == nameof(context.IsLoading) && !context.IsLoading)
+                                    confirm.Close();
+                            };
+                        };
+                        break;
+                    case "Cancel":
+                        Close();
+                        return;
+                }
+                confirm.ShowDialog();
+            }
         }
     }
 }
