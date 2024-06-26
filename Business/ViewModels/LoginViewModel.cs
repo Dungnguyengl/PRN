@@ -9,6 +9,7 @@ namespace ViewModel.ViewModels
         private string? _email;
         private string? _password;
         private bool _isFail;
+        private bool _isSuccess;
 
         public string Email
         {
@@ -40,6 +41,16 @@ namespace ViewModel.ViewModels
             }
         }
 
+        public bool IsSuccess
+        {
+            get => _isSuccess;
+            set
+            {
+                _isSuccess = value;
+                OnPropertyChange(nameof(IsSuccess));
+            }
+        }
+
         private ICommand? _loginCommand;
 
         public ICommand LoginCommand => _loginCommand ??= new CommandBase(() =>
@@ -50,7 +61,10 @@ namespace ViewModel.ViewModels
             if (user == null)
             {
                 IsFail = true;
-                return;
+            }
+            else
+            {
+                IsSuccess = true;
             }
         });
     }

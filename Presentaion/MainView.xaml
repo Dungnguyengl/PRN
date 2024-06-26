@@ -8,18 +8,21 @@
         Title="Sales App"
         Width="850"
         Height="600">
+    <Window.Resources>
+        <local:BoolToVisibility x:Key="BoolToVisibility"/>
+    </Window.Resources>
     <StackPanel Margin="10">
         <StackPanel Orientation="Horizontal"
                     Margin="10 5">
             <TextBlock Padding="4 10"
                        FontSize="24"
                        FontWeight="Bold"
-                       Text="Hello, {User}"/>
+                       Text="{Binding WelcomeTile}"/>
             <Button Content="Login/Logout"
                     Margin="10 10"
                     Click="LoginClick"/>
         </StackPanel>
-        <TabControl>
+        <TabControl Visibility="{Binding IsLogin, Converter={StaticResource BoolToVisibility}}">
             <TabItem>
                 <TabItem.Header>
                     <TextBlock Text="Members"/>

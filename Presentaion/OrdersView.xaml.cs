@@ -57,7 +57,10 @@ namespace SalesWPFApp
         private void ShowMemberPopup(OrdersViewModel vm, bool isCreating)
         {
             if (isCreating)
-                vm.SelectedOrder = new();
+                vm.SelectedOrder = new()
+                {
+                    Details = new(){new()}
+                };
             vm.IsCreating = isCreating;
 
             var memberDetailView = new OrderDetailView

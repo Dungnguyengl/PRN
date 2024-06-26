@@ -24,7 +24,7 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0">User Name:</Label>
-                <TextBox Grid.Column="1"/>
+                <TextBox Grid.Column="1" Text="{Binding Email}"/>
             </Grid>
             <Grid Grid.Row="1" Margin="0 5">
                 <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0">Password:</Label>
-                <PasswordBox Grid.Column="1" />
+                <PasswordBox Grid.Column="1" PasswordChanged="PasswordBox_PasswordChanged"/>
             </Grid>
         </Grid>
         <StackPanel Orientation="Horizontal"

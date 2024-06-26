@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using ViewModel.ViewModels;
 
 namespace SalesWPFApp
@@ -31,11 +32,26 @@ namespace SalesWPFApp
                     }.ShowDialog();
                 }
             }
+            if (e.PropertyName == "IsSuccess")
+            {
+                if (((LoginViewModel)DataContext).IsSuccess)
+                {
+                    Close();
+                }
+            }
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox pwb && DataContext is LoginViewModel vm)
+            {
+                 vm.Password = pwb.Password;
+            }
         }
     }
 }
