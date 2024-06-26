@@ -1,0 +1,51 @@
+﻿@page
+@model PizzaStoreManagement.Pages.SupplierView.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier[0].CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier[0].Phone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Supplier) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SupplerId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SupplerId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SupplerId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p>
+    <a asp-page="/ProductsView/Index">Back to products list</a>
+</p>

@@ -1,0 +1,76 @@
+﻿@page
+@model PizzaStoreManagement.Pages.ProductsView.IndexModel
+
+@{
+    ViewData["Title"] = "Product list";
+}
+
+<h1 style="text-align:center">Product List</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<p>
+    <a asp-page="/CategoriesView/Index">Product Categories</a>
+</p>
+
+<p>
+    <a asp-page="/SupplierView/Index">Suppliers</a>
+</p>
+
+<form method="get" class="form-inline mb-3">
+    <div class="form-group mx-sm-2 mb-2">
+        <label for="SearchId" class="sr-only">Product ID</label>
+        <input type="text" id="SearchId" name="SearchId" class="form-control form-control-sm" placeholder="Product ID" value="@Model.SearchId" />
+    </div>
+    <div class="form-group mx-sm-2 mb-2">
+        <label for="SearchName" class="sr-only">Product Name</label>
+        <input type="text" id="SearchName" name="SearchName" class="form-control form-control-sm" placeholder="Product Name" value="@Model.SearchName" />
+    </div>
+    <div class="form-group mx-sm-2 mb-2">
+        <label for="SearchPrice" class="sr-only">Unit Price</label>
+        <input type="text" id="SearchPrice" name="SearchPrice" class="form-control form-control-sm" placeholder="Unit Price" value="@Model.SearchPrice" />
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm mb-2">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity Per Unit</th>
+            <th>Unit Price</th>
+            <th>Supplier</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantityPerUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Model.Suppliers.FirstOrDefault(s => s.SupplerId == item.SupplierId)?.CompanyName
+                </td>
+                <td>
+                    @Model.Categories.FirstOrDefault(s => s.CategoryId == item.CategoryId)?.CategoryDescription
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
